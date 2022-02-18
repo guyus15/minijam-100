@@ -1,6 +1,8 @@
 import pygame
 
 from source.spritesheet import Spritesheet
+from source.settings import PLAYER_SPRITESHEET_PATH
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, initial_pos):
@@ -8,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.pos = pygame.Vector2(initial_pos)
         self.player_size = (64, 64)  # Setting player size to be changed through upgrades
         self.player_speed = 10
-        self.sprite = Spritesheet("resources/test-image.png", 1, 4)
+        self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 4)
 
     def player_movement(self):
         keys_pressed = pygame.key.get_pressed()
