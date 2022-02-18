@@ -6,7 +6,7 @@ class Spritesheet:
         self.num_rows = num_rows
         self.num_cols = num_cols
 
-        self.spritesheet = pygame.image.load(file_path)
+        self.spritesheet = pygame.image.load(file_path).convert_alpha()
         self.spritesheet_dimensions = [self.spritesheet.get_width(), self.spritesheet.get_height()]
 
         self.frame_width = self.spritesheet_dimensions[0] / num_cols
@@ -16,6 +16,7 @@ class Spritesheet:
         self.current_col = 1
 
     def draw(self, screen, pos_vector, rotation=0, frame_index=None):
+
         if frame_index is not None:
             self.current_frame = frame_index
 
@@ -30,7 +31,8 @@ class Spritesheet:
         location = pygame.Rect(self.frame_width * (self.current_col - 1),
                                self.frame_height * (self.current_frame - 1),
                                self.frame_width,
-                               self.frame_height)
+                               self.frame_height
+                               )
 
         cropped = pygame.Surface((self.frame_width, self.frame_height))
         cropped.blit(self.spritesheet, (0, 0), location)

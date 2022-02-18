@@ -3,6 +3,7 @@ from source.settings import *
 
 pygame.init()
 
+<<<<<<< HEAD
 screen = pygame.display.set_mode((SCREEN_SIZE))
 
 fontsize = 45
@@ -57,3 +58,39 @@ while True:
     screen.blit(game_title, (SCREEN_WIDTH/3, SCREEN_HEIGHT/3)) 
 
     pygame.display.update()
+=======
+# Set up the drawing window
+
+screen = pygame.display.set_mode(SCREEN_SIZE)
+pygame.display.set_caption("Mini Jam Game")
+
+player = Player((SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+
+clock = pygame.time.Clock()
+
+# Run until the user asks to quit
+
+running = True
+
+# This method will be called once per frame
+def update():
+    screen.fill(WHITE)
+
+    # Handle player movement
+    player.update(screen)
+
+    pygame.display.update()
+    clock.tick(FPS)
+
+
+while running:
+    # Checking for the user pressing the window close button
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    update()
+
+# Quit the game
+pygame.quit()
+>>>>>>> 3daaeb53a8f9b144abe33c224e5614c3987f0dbc
