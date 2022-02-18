@@ -11,8 +11,8 @@ size = width, height = 800, 500
 screen = pygame.display.set_mode(size)
 
 # Run until the user asks to quit
-running = True
-while running:
+RUNNING = True
+while RUNNING:
 
     # Checking for the user pressing the window close button
     for event in pygame.event.get():
@@ -22,7 +22,7 @@ while running:
     pygame.display.set_caption("Mini Jam Game")
 
     # Flip the display
-    pygame.display.flip()
+    pygame.display.update()
 
 # Quit the game
 pygame.quit()
