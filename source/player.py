@@ -1,4 +1,3 @@
-
 import pygame
 
 
@@ -25,9 +24,7 @@ class Player(pygame.sprite.Sprite):
         if keys_pressed[pygame.K_s] and self.rect.y <= 500 - self.player_size[1] or keys_pressed[pygame.K_DOWN] and self.rect.y <= 500 - self.player_size[1]: #Down
             self.rect.y += self.player_speed
 
-
-
-
-    #player = Player((0,0))
-    #print(player.rect)
+    def update(self,screen):
+        screen.blit(self.image, (self.rect.x,self.rect.y))
+        
     
