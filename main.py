@@ -11,8 +11,8 @@ size = width, height = 800, 500
 screen = pygame.display.set_mode(size)
 
 # Run until the user asks to quit
-RUNNING = True
-while RUNNING:
+running = True
+while running:
 
     # Checking for the user pressing the window close button
     for event in pygame.event.get():
