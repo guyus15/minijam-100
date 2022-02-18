@@ -13,5 +13,5 @@ MIN_TRASH_MASS = 1
 MAX_TRASH_MASS = 5
 
 # File paths
-PLAYER_SPRITESHEET_PATH = "resources/test-image"
-TRASH_SPRITESHEET_PATH = "resources/trash-image"
+PLAYER_SPRITESHEET_PATH = "resources/test-image.png"
+TRASH_SPRITESHEET_PATH = "resources/trash-image.png"
