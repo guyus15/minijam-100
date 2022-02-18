@@ -11,32 +11,32 @@ pygame.init()
 screen = pygame.display.set_mode(SCREEN_SIZE)
 pygame.display.set_caption("Mini Jam Game")
 
-player = Player()
+player = Player((SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
 clock = pygame.time.Clock()
 
 # Run until the user asks to quit
 
 running = True
-while running:
 
+# This method will be called once per frame
+def update():
+    screen.fill(WHITE)
+
+    # Handle player movement
+    player.update(screen)
+
+    pygame.display.update()
     clock.tick(FPS)
 
+
+while running:
     # Checking for the user pressing the window close button
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill(WHITE)
-
-    # Handle player movement
-
-    player.player_movement()
-    player.update(screen)
-
-    # Flip the display
-
-    pygame.display.update()
+    update()
 
 # Quit the game
 pygame.quit()
