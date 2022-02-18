@@ -1,17 +1,19 @@
-# Simple pygame program
-
 # Import and initialize the pygame library
+
 import pygame
 from source.player import *
 from source.settings import *
 
 pygame.init()
-clock = pygame.time.Clock()
+
 # Set up the drawing window
+
 screen = pygame.display.set_mode(SCREEN_SIZE)
 pygame.display.set_caption("Mini Jam Game")
+
 player = Player()
 
+clock = pygame.time.Clock()
 
 # Run until the user asks to quit
 
@@ -25,11 +27,15 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    screen.fill(WHITE)
+
+    # Handle player movement
+
+    player.player_movement()
+    player.update(screen)
 
     # Flip the display
-    screen.fill(WHITE)
-    player.player_movement()
-    player.update()
+
     pygame.display.update()
 
 # Quit the game
