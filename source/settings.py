@@ -19,5 +19,5 @@ TRASH_SPAWN_PERIOD = 1.5
 TRASH_SLOWDOWN_RATE = 0.99
 
 # File paths
-PLAYER_SPRITESHEET_PATH = "resources/test-image.png"
+PLAYER_SPRITESHEET_PATH = "resources/arrow.png"
 TRASH_SPRITESHEET_PATH = "resources/trash-image.png"

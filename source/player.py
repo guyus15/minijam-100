@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
 
         self.movement = Movement(self.player_speed, self.pos)
         PlayerCollider.__init__(self, self.pos, self.movement, self.player_size)
-        self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 4)
+        self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 1)
 
     def player_movement(self):
         keys_pressed = pygame.key.get_pressed()
@@ -52,5 +52,5 @@ class Player(pygame.sprite.Sprite):
     def update(self, screen):
         self.player_movement()
         self.pos = self.movement.get_pos()
-        self.sprite.draw(screen, self.pos, size=self.player_size)
+        self.sprite.draw(screen, self.pos, size=self.player_size, rotation=self.movement.get_rotation())
         self.sprite.next_frame()
