@@ -2,6 +2,8 @@ import pygame
 
 from source.spritesheet import Spritesheet
 from source.settings import TRASH_SPRITESHEET_PATH
+from source.settings import MIN_TRASH_SPEED_UNTIL_STATIONARY
+from source.settings import TRASH_SLOWDOWN_RATE
 
 
 class Trash:
@@ -15,5 +17,11 @@ class Trash:
         return self.mass
 
     def update(self, screen):
-        self.pos += self.velocity
+        # If the velocity of the trash is below a certain threshold, it will come to a stop
+        if self.velocity.magnitude() > MIN_TRASH_SPEED_UNTIL_STATIONARY:
+            self.pos += self.velocity
+
+        # Diminish the velocity so slow down the trash item
+        self.velocity *= TRASH_SLOWDOWN_RATE
+
         self.sprite.draw(screen, self.pos)
