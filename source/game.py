@@ -3,7 +3,7 @@
 import pygame
 from source.player import *
 from source.settings import *
-
+from source.trash_spawner import TrashSpawner
 
 class Game:
 
@@ -13,6 +13,7 @@ class Game:
         self.window_setup()
         self.clock = pygame.time.Clock()
         self.player = Player((SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 - 32))
+        self.trash_spawner = TrashSpawner((SCREEN_WIDTH / 2, SCREEN_HEIGHT), (0, 1))
 
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
@@ -22,6 +23,7 @@ class Game:
     def update(self):
         self.screen.fill(WHITE)
         self.player.update(self.screen)  # Updates player behaviour
+        self.trash_spawner.update(self.screen, self.player)  # Updates trash spawner behaviour
 
     def play_game(self):
         running = True
