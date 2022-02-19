@@ -15,7 +15,7 @@ class Spritesheet:
         self.current_frame = 1  # Sets the initial animation frame
         self.current_col = 1
 
-    def draw(self, screen, pos_vector, rotation=0, frame_index=None, size = None):
+    def draw(self, screen, pos_vector, rotation=0, frame_index=None, size=None):
 
         if frame_index is not None:
             self.current_frame = frame_index
