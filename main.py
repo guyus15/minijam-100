@@ -1,5 +1,6 @@
 import pygame
 from source.settings import *
+from source.game import *
 
 pygame.init()
 
@@ -33,7 +34,9 @@ while True:
             # When Start button clicked, quits out of while loop and opens game loop
             if SCREEN_WIDTH/2-150 <= mouse[0] <= SCREEN_WIDTH/2 and SCREEN_HEIGHT/2 + 100 <= mouse[1] <= SCREEN_HEIGHT/2 + 140:
                 pygame.quit()
-                # OPEN GAME LOOP
+                game = Game()
+                game.play_game()
+
  
     screen.fill(MENU_COLOUR) 
       
