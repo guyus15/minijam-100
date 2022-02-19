@@ -49,12 +49,12 @@ class Collider:
         if self.shape is ColliderTypes.RECTANGLE:
             if collider.shape is ColliderTypes.CIRCLE:
                 # Collision between a circle and a rectangle
-                return (abs(collider.pos.x - self.pos.x) <= collider.radius + self.width / 2) and
-                var = (abs(collider.pos.y - self.pos.y) <= collider.radius + self.height / 2)
+                return (abs(collider.pos.x - self.pos.x) <= collider.radius + self.width / 2) \
+                       and (abs(collider.pos.y - self.pos.y) <= collider.radius + self.height / 2)
 
             # Collision between two rectangles
-            return (abs(collider.pos.x - self.pos.x) <= collider.width / 2 + self.width / 2) and
-            (abs(collider.pos.y - self.pos.y) <= collider.height / 2 + self.height / 2)
+            return (abs(collider.pos.x - self.pos.x) <= collider.width / 2 + self.width / 2) \
+                and (abs(collider.pos.y - self.pos.y) <= collider.height / 2 + self.height / 2)
 
     def add_collision(self, collider):
         self.collision_list.append(collider)
