@@ -81,3 +81,6 @@ class Movement:
 
     def get_rotation(self):
         return self.rotation
+
+    def set_speed(self, speed):
+        self.speed = speed
