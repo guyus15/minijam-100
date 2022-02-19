@@ -1,5 +1,3 @@
-import pygame
-
 from enum import Enum
 from source.vector import Vector
 

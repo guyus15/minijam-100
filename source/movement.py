@@ -81,4 +81,3 @@ class Movement:
 
     def get_rotation(self):
         return self.rotation
-    
