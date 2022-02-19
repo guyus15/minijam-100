@@ -12,8 +12,9 @@ class Game:
         self.screen = None
         self.window_setup()
         self.clock = pygame.time.Clock()
+        self.tick_counter = 0
         self.player = Player((SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 - 32))
-        self.trash_spawner = TrashSpawner((SCREEN_WIDTH / 2, SCREEN_HEIGHT), (0, 1))
+        self.trash_spawner = TrashSpawner((SCREEN_WIDTH / 2, SCREEN_HEIGHT), (0, -1), self.player)
 
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
@@ -23,7 +24,12 @@ class Game:
     def update(self):
         self.screen.fill(WHITE)
         self.player.update(self.screen)  # Updates player behaviour
-        self.trash_spawner.update(self.screen, self.player)  # Updates trash spawner behaviour
+        self.trash_spawner.update(self.screen)  # Updates trash spawner behaviour
+
+        if self.tick_counter % (TRASH_SPAWN_PERIOD * FPS) == 0:
+            self.trash_spawner.spawn()
+
+        self.tick_counter += 1
 
     def play_game(self):
         running = True
