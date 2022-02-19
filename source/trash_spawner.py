@@ -6,17 +6,23 @@ from source.settings import MIN_TRASH_SPEED
 from source.settings import MAX_TRASH_SPEED
 from source.settings import MIN_TRASH_MASS
 from source.settings import MAX_TRASH_MASS
+from source.settings import MAX_TRASH_PER_SPAWNER
 
 
 class TrashSpawner:
     def __init__(self, pos, direction, player):
         self.pos = pos
         self.direction = direction
+        self.player = player
         self.spawned_trash = []
         self.total_spawned = 0
         self.possible_directions_from_bottom = [(1, 1), (0.5, 1), (0, 1), (-0.5, 1), (-1, 1)]
 
     def spawn(self):
+        # If the trash spawner has reach the max amount of items it can spawn, exit
+        if self.total_spawned == MAX_TRASH_PER_SPAWNER:
+            return
+
         # Pick a random velocity for the trash to be thrown at
 
         random_direction = random.choice(self.possible_directions_from_bottom)
@@ -40,9 +46,10 @@ class TrashSpawner:
 
         vector.scale_to_length(random_speed)
 
-        new_trash_item = Trash(self.pos, vector, random_mass)
+        new_trash_item = Trash(self.pos, vector, random_mass, self.player)
 
         self.spawned_trash.append(new_trash_item)
+        self.total_spawned += 1
 
     def update(self, screen):
         for trash_item in self.spawned_trash:
