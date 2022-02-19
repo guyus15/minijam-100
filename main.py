@@ -58,5 +58,5 @@ while True:
     screen.blit(quit, (quit_button.x + quit_button.width/7, quit_button.y))
     screen.blit(start, (start_button.x + start_button.width/7, start_button.y)) 
     screen.blit(game_title, (SCREEN_WIDTH/3, SCREEN_HEIGHT/3)) 
-
+    
     pygame.display.update()

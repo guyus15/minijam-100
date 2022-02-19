@@ -1,6 +1,7 @@
 import pygame
 from source.settings import *
 from source.spritesheet import Spritesheet
+from source.settings import PLAYER_SPRITESHEET_PATH
 
 
 class Player(pygame.sprite.Sprite):
@@ -11,9 +12,9 @@ class Player(pygame.sprite.Sprite):
         self.size_up_num = 0 # Number of size upgrades
         self.player_speed = 10
         self.speed_up_num = 0 # Number of movement speed upgrades
-        
-        self.sprite = Spritesheet("resources/test-image.png", 1, 4)
-    
+
+        self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 4)
+
     def player_movement(self):
         keys_pressed = pygame.key.get_pressed()
 
@@ -37,10 +38,9 @@ class Player(pygame.sprite.Sprite):
             self.player_speed = (self.player_speed * 1.5)
             self.speed_up_num += 1
             print("Becoming Fin")
-            
 
     def update(self, screen):
         self.player_movement()
         self.sprite.draw(screen, self.pos, size = self.player_size)
         self.sprite.next_frame()
-
+        
