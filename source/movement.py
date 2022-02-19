@@ -84,3 +84,9 @@ class Movement:
 
     def set_speed(self, speed):
         self.speed = speed
+
+    def update(self):
+        self.vel_vector = Vector(self.check_out_range(self.vel_vector.x), self.check_out_range(self.vel_vector.y))
+        self.rotate()
+        self.pos_vector.add(self.vel_vector)
+        self.vel_vector.multiply(0.3)  # Dampens movement when coming to a stop
