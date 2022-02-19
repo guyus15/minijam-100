@@ -34,3 +34,18 @@ class Movement:
         elif direction < 0:
             self.vel_vector.add(Vector(self.vel_vector.x, self.speed))  # Move up
 
+    def check_out_range(self, value):
+        """
+        A clamping function which will ensure that the speed of the player does not exceed the defined
+        speed variable.
+        :param value: The value to clamp.
+        """
+
+        if value > self.speed:
+            return self.speed
+        elif value < -self.speed:
+            return -self.speed
+        else:
+            return value
+
+    
