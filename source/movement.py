@@ -93,3 +93,25 @@ class Movement:
         self.rotate()
         self.pos_vector.add(self.vel_vector)
         self.vel_vector.multiply(0.3)  # Dampens movement when coming to a stop
+
+
+class TrashMovement(Movement):
+    def __init__(self, speed, pos_vector, target=None):
+        super().__init__(speed, pos_vector)
+        self.target = target
+
+    def move_towards_target(self):
+        """
+        Moves the trash towards a particular target.
+        """
+
+        delta_x = self.target.x - self.pos_vector.x
+        delta_y = self.target.y - self.pos_vector.y
+
+        # Ensures there are no division by zero errors when normalising
+        if delta_x == 0 and delta_y == 0:
+            return
+
+        # Normalised vector from delta x & delta y
+        target_vector = Vector(delta_x, delta_y).normalise()
+        self.vel_vector.add(target_vector)
