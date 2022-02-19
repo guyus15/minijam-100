@@ -14,6 +14,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.player = Player((SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 - 32))
 
+    def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
         pygame.display.set_caption("Mini Jam Game")
         self.screen.fill(WHITE)
