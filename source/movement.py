@@ -76,3 +76,9 @@ class Movement:
         elif self.vel_vector.y < -0.1:  # Moving up
             self.rotation = 0
 
+    def get_pos(self):
+        return self.pos_vector
+
+    def get_rotation(self):
+        return self.rotation
+    
