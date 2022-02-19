@@ -38,8 +38,10 @@ class Spritesheet:
         cropped.blit(self.spritesheet, (0, 0), location)
 
         cropped = pygame.transform.rotate(cropped, rotation)
+
         if size is not None:
-            cropped = pygame.transform.scale(cropped, size)
+            cropped = pygame.transform.scale(cropped, (int(size[0]), int(size[1])))
+
         screen.blit(cropped, (pos_vector.x, pos_vector.y))
 
     # Increments the sprite's frame
