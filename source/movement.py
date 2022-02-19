@@ -1,3 +1,5 @@
+import math
+
 from source.vector import Vector
 
 
@@ -48,4 +50,29 @@ class Movement:
         else:
             return value
 
-    
+    def rotate(self):
+        """
+        Rotates the player based off their velocity vector.
+        """
+
+        if self.vel_vector.x > 0.1:  # Moving right
+            self.rotation = math.pi / 2
+
+            if self.vel_vector.y > 0.1:  # Moving down right
+                self.rotation = (3 / 4) * math.pi
+            elif self.vel_vector.y < -0.1:  # Moving down left
+                self.rotation = math.pi / 4
+
+        elif self.vel_vector.x < -0.1:  # Moving left
+            self.rotation = (3 / 2) * math.pi
+
+            if self.vel_vector.y > 0.1:  # Moving down left
+                self.rotation = (5 / 4) * math.pi
+            elif self.vel_vector.y < -0.1:  # Moving up left
+                self.rotation = (7 / 4) * math.pi
+
+        elif self.vel_vector.y > 0.1:  # Moving down
+            self.rotation = math.pi
+        elif self.vel_vector.y < -0.1:  # Moving up
+            self.rotation = 0
+
