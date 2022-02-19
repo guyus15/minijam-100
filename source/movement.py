@@ -55,7 +55,7 @@ class Movement:
         Rotates the player based off their velocity vector.
         """
 
-        if self.vel_vector.x > 0.1:  # Moving right
+        if self.vel_vector.x < -0.1:  # Moving right
             self.rotation = math.pi / 2
 
             if self.vel_vector.y > 0.1:  # Moving down right
@@ -63,7 +63,7 @@ class Movement:
             elif self.vel_vector.y < -0.1:  # Moving down left
                 self.rotation = math.pi / 4
 
-        elif self.vel_vector.x < -0.1:  # Moving left
+        elif self.vel_vector.x > 0.1:  # Moving left
             self.rotation = (3 / 2) * math.pi
 
             if self.vel_vector.y > 0.1:  # Moving down left
@@ -79,8 +79,11 @@ class Movement:
     def get_pos(self):
         return self.pos_vector
 
-    def get_rotation(self):
+    def get_rotation_rad(self):
         return self.rotation
+
+    def get_rotation(self):
+        return self.rotation * (180 / math.pi)
 
     def set_speed(self, speed):
         self.speed = speed
