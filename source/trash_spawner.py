@@ -9,7 +9,7 @@ from source.settings import MAX_TRASH_MASS
 
 
 class TrashSpawner:
-    def __init__(self, pos, direction):
+    def __init__(self, pos, direction, player):
         self.pos = pos
         self.direction = direction
         self.spawned_trash = []
