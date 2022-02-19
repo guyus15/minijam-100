@@ -52,7 +52,7 @@ class Vector:
     # Multiplies the vector by a scalar
     def multiply(self, k):
         self.x *= k
-        self.x *= k
+        self.y *= k
         return self
 
     def __mul__(self, k):
