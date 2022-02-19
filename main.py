@@ -30,7 +30,7 @@ def update():
     # Handle player movement
     player.update(screen)
 
-    if tick_counter % 90 == 0:
+    if tick_counter % (TRASH_SPAWN_PERIOD * FPS) == 0:
         trash_spawner.spawn()
 
     trash_spawner.update(screen)

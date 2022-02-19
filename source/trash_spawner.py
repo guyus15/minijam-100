@@ -2,7 +2,10 @@ import random
 import pygame
 
 from source.trash import Trash
-from source.settings import *
+from source.settings import MIN_TRASH_SPEED
+from source.settings import MAX_TRASH_SPEED
+from source.settings import MIN_TRASH_MASS
+from source.settings import MAX_TRASH_MASS
 
 
 class TrashSpawner:
@@ -14,8 +17,6 @@ class TrashSpawner:
         self.possible_directions_from_bottom = [(1, 1), (0.5, 1), (0, 1), (-0.5, 1), (-1, 1)]
 
     def spawn(self):
-        print("Spawning trash!")
-
         # Pick a random velocity for the trash to be thrown at
 
         random_direction = random.choice(self.possible_directions_from_bottom)
