@@ -1,3 +1,4 @@
+import pygame
 import math
 
 from source.vector import Vector
@@ -7,7 +8,7 @@ class Movement:
     def __init__(self, speed, pos_vector):
         self.speed = speed
         self.pos_vector = pos_vector
-        self.vel_vector = Vector()
+        self.vel_vector = Vector(0, 0)
         self.rotation = 0
 
     def move_horizontal(self, direction):
@@ -112,6 +113,24 @@ class TrashMovement(Movement):
         if delta_x == 0 and delta_y == 0:
             return
 
+        magnitude = Vector(delta_x, delta_y).length()
+
         # Normalised vector from delta x & delta y
         target_vector = Vector(delta_x, delta_y).normalise()
-        self.vel_vector.add(target_vector)
+        self.vel_vector.add(target_vector.multiply(self.speed / (magnitude)))
+
+    def get_distance_to_target(self):
+        """
+        Gets the distance from the trash item to the target.
+        :return: The distance between the trash item and the target.
+        """
+
+        delta_x = self.target.x - self.pos_vector.x
+        delta_y = self.target.y - self.pos_vector.y
+
+        magnitude = Vector(delta_x, delta_y).length()
+
+        return magnitude
+
+    def set_position(self, position):
+        self.pos_vector = position
