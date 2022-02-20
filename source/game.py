@@ -1,10 +1,9 @@
-# Import and initialize the pygame library
-
-import pygame
 from source.player import *
 from source.settings import *
 from source.trash_spawner import TrashSpawner
 from source.vector import Vector
+from source.level import Level
+
 
 class Game:
 
@@ -15,7 +14,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.tick_counter = 0
         self.player = Player((SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 - 32))
-        self.trash_spawner = TrashSpawner(Vector(SCREEN_WIDTH / 2, SCREEN_HEIGHT), (0, -1), self.player)
+        self.trash_spawner = TrashSpawner(Vector(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 100), (0, -1), self.player)
+        self.level = Level()
 
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
