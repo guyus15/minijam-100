@@ -63,7 +63,7 @@ class Menu:
 
             self.mouse = pygame.mouse.get_pos()  # Update the mouse position
 
-            # Checks if mouse is over menu buttons, draws lighter box if i is - Achieves a highlight affect
+            # Checks if mouse is over menu buttons, draws lighter box if 'i' is - Achieves a highlight affect
             self.check_mouse_hover(quit_button)
             self.check_mouse_hover(start_button)
 
