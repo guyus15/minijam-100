@@ -52,7 +52,7 @@ class TrashSpawner:
 
         vector.multiply(random_speed)
 
-        new_trash_item = Trash(self.pos, vector, random_mass, self.player)
+        new_trash_item = Trash(self.pos, vector, random.randint(0, 360), random_mass, self.player)
 
         self.spawned_trash.append(new_trash_item)
         self.total_spawned += 1
