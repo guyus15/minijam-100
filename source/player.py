@@ -1,9 +1,9 @@
 import pygame
 from source.settings import *
 from source.spritesheet import Spritesheet
-from source.vector import Vector
 from source.movement import Movement
 from source.collider import PlayerCollider
+from source.vector import Vector
 
 
 class Player(pygame.sprite.Sprite):
@@ -48,6 +48,9 @@ class Player(pygame.sprite.Sprite):
             self.movement.set_speed(self.player_speed)
             self.speed_up_num += 1
             print("Becoming Fin")
+
+    def get_pos(self):
+        return self.pos
 
     def update(self, screen):
         self.player_movement()
