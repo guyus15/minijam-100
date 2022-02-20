@@ -3,6 +3,7 @@ import pygame
 from source.spritesheet import Spritesheet
 from source.movement import TrashMovement
 from source.vector import Vector
+from source.collider import SpriteCollider
 from source.settings import TRASH_SPRITESHEET_PATH
 from source.settings import MIN_TRASH_SPEED_UNTIL_STATIONARY
 from source.settings import TRASH_SLOWDOWN_RATE
@@ -18,6 +19,7 @@ class Trash:
         self.velocity = Vector(initial_velocity.x, initial_velocity.y)
         self.mass = mass
         self.movement = TrashMovement(TRASH_COLLECT_SPEED, self.pos, player.get_pos())
+        SpriteCollider.__init__(self.pos, self.movement, (64, 64))
         self.sprite = Spritesheet(TRASH_SPRITESHEET_PATH, 1, 1)
         self.should_move = True
         self.should_delete = False
