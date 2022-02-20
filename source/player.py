@@ -2,7 +2,6 @@ import pygame
 from source.settings import *
 from source.spritesheet import Spritesheet
 from source.movement import Movement
-from source.collider import PlayerCollider
 from source.vector import Vector
 
 
@@ -16,7 +15,6 @@ class Player(pygame.sprite.Sprite):
         self.speed_up_num = 0  # Number of movement speed upgrades
 
         self.movement = Movement(self.player_speed, self.pos)
-        PlayerCollider.__init__(self, self.pos, self.movement, self.player_size)
         self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 1)
 
     def player_movement(self):
