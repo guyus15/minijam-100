@@ -9,7 +9,7 @@ class TimeManager:
     def transition(cls, frame_duration):
         # Used to check if a sufficient amount of time has passed
 
-        if cls.time & frame_duration == 0:
+        if cls.time % frame_duration == 0:
             return True
-
-        return False
+        else:
+            return False
