@@ -15,7 +15,7 @@ class Spritesheet:
         self.current_frame = 1  # Sets the initial animation frame
         self.current_col = 1
 
-    def draw(self, screen, pos_vector, rotation=0, frame_index=None, size = None):
+    def draw(self, screen, pos_vector, rotation=0, frame_index=None, size=None):
 
         if frame_index is not None:
             self.current_frame = frame_index
@@ -38,8 +38,10 @@ class Spritesheet:
         cropped.blit(self.spritesheet, (0, 0), location)
 
         cropped = pygame.transform.rotate(cropped, rotation)
+
         if size is not None:
-            cropped = pygame.transform.scale(cropped, size)
+            cropped = pygame.transform.scale(cropped, (int(size[0]), int(size[1])))
+
         screen.blit(cropped, (pos_vector.x, pos_vector.y))
 
     # Increments the sprite's frame

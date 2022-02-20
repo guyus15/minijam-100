@@ -52,7 +52,7 @@ class Vector:
     # Multiplies the vector by a scalar
     def multiply(self, k):
         self.x *= k
-        self.x *= k
+        self.y *= k
         return self
 
     def __mul__(self, k):
@@ -107,7 +107,7 @@ class Vector:
     # Rotates the vector according to an angle theta given in radians
     def rotate_rad(self, theta):
         rx = self.x * math.cos(theta) - self.y * math.sin(theta)
-        ry = self.x * math.sin(theta) + self.y * math.cost(theta)
+        ry = self.x * math.sin(theta) + self.y * math.cos(theta)
         self.x, self.y = rx, ry
         return self
 

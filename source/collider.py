@@ -90,7 +90,7 @@ class Collider:
         self.vel = velocity
 
 
-class PlayerCollider(Collider):
+class SpriteCollider(Collider):
     def __init__(self, position, movement, dimensions):
         Collider.__init__(self, ColliderTypes.RECTANGLE, position, width=dimensions[0], height=dimensions[1])
         self.movement = movement
