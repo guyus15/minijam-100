@@ -60,6 +60,9 @@ class TrashSpawner:
     def get_current_trash(self):
         return self.spawned_trash
 
+    def get_number_trash(self):
+        return len(self.spawned_trash)
+
     def update(self, screen):
         if TimeManager.transition(TRASH_SPAWN_PERIOD):
             self.spawn()

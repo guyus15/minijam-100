@@ -5,6 +5,8 @@ from source.incinerator import Incinerator
 from source.vector import Vector
 from source.level import Level
 from source.time_manager import TimeManager
+from main import Menu
+from main import MenuType
 
 
 class Game:
@@ -20,6 +22,7 @@ class Game:
                                TrashSpawner(Vector(SCREEN_WIDTH / 2, 100), (0, 1), self.player)]
         self.level = Level()
         self.background_image = pygame.Surface.convert(pygame.image.load(BACKGROUND_IMAGE_PATH))
+        self.total_trash = 0
 
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
@@ -32,7 +35,12 @@ class Game:
         self.incinerator.update(self.screen)  # Updates incinerator behaviour
         for trash_spawner in self.trash_spawners:
             trash_spawner.update(self.screen)  # Updates trash spawner behaviour
+            self.total_trash = trash_spawner.get_number_trash()
         self.player.update(self.screen)  # Updates player behaviour
+
+        print(self.total_trash)
+
+        self.check_game_over()
 
         TimeManager.tick()
 
@@ -56,3 +64,8 @@ class Game:
             pygame.display.update()
 
         pygame.quit()  # Quit the game once running == False
+
+    def check_game_over(self):
+        if self.total_trash >= TRASH_UNTIL_GAME_OVER:
+            pygame.quit()
+            Menu(MenuType.GAME_OVER)
