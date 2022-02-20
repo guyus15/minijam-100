@@ -1,7 +1,7 @@
-import pygame
 import math
 
 from source.vector import Vector
+from source.settings import SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class Movement:
@@ -97,9 +97,10 @@ class Movement:
 
 
 class TrashMovement(Movement):
-    def __init__(self, speed, pos_vector, target=None):
+    def __init__(self, speed, pos_vector, initial_vel, target=None):
         super().__init__(speed, pos_vector)
         self.target = target
+        self.vel_vector = initial_vel
 
     def move_towards_target(self):
         """
@@ -117,7 +118,7 @@ class TrashMovement(Movement):
 
         # Normalised vector from delta x & delta y
         target_vector = Vector(delta_x, delta_y).normalise()
-        self.vel_vector.add(target_vector.multiply(self.speed / (magnitude)))
+        self.vel_vector.add(target_vector.multiply(self.speed / magnitude))
 
     def get_distance_to_target(self):
         """
@@ -132,5 +133,13 @@ class TrashMovement(Movement):
 
         return magnitude
 
-    def set_position(self, position):
-        self.pos_vector = position
+    def update(self):
+        self.vel_vector = Vector(self.check_out_range(self.vel_vector.x), self.check_out_range(self.vel_vector.y))
+        self.rotate()
+        self.pos_vector.add(self.vel_vector)
+        self.vel_vector.multiply(0.99)  # Dampens movement when coming to a stop
+
+        if self.pos_vector.x >= SCREEN_WIDTH or self.pos_vector.x <= 0:
+            self.vel_vector = Vector(-self.vel_vector.x, self.vel_vector.y)
+        if self.pos_vector.y >= SCREEN_HEIGHT or self.pos_vector.y <= 0:
+            self.vel_vector = Vector(self.vel_vector.x, -self.vel_vector.y)
