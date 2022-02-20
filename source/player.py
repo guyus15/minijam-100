@@ -50,7 +50,6 @@ class Player(pygame.sprite.Sprite):
     def add_trash_item(self, trash_item):
         self.trash_items.append(trash_item)
         self.current_trash_item_mass += trash_item.get_mass()
-        print("current mass: {}".format(self.current_trash_item_mass))
 
     def remove_trash_item(self):
         if len(self.trash_items):
@@ -58,7 +57,6 @@ class Player(pygame.sprite.Sprite):
             self.current_trash_item_mass -= trash_item.get_mass()
             incinerator_sound = pygame.mixer.Sound("resources/incinerator.wav")
             incinerator_sound.play()
-            print("current mass: {}".format(self.current_trash_item_mass))
 
     def upgrade(self, size_up=False, speed_up=False):
 
