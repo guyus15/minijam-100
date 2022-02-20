@@ -24,6 +24,10 @@ class Player(pygame.sprite.Sprite):
         self.current_trash_item_mass = 0
         self.trash_items = []
 
+        # Mass bar
+        self.mass_bar_background = pygame.Rect((MASS_BAR_X, MASS_BAR_Y), (MASS_BAR_WIDTH, MASS_BAR_HEIGHT))
+        self.mass_bar_foreground = pygame.Rect((MASS_BAR_X, MASS_BAR_Y), (0, MASS_BAR_HEIGHT))
+
     def player_movement(self):
         keys_pressed = pygame.key.get_pressed()
 
@@ -52,6 +56,8 @@ class Player(pygame.sprite.Sprite):
         if len(self.trash_items):
             trash_item = self.trash_items.pop()
             self.current_trash_item_mass -= trash_item.get_mass()
+            incinerator_sound = pygame.mixer.Sound("resources/incinerator.wav")
+            incinerator_sound.play()
             print("current mass: {}".format(self.current_trash_item_mass))
 
     def upgrade(self, size_up=False, speed_up=False):
@@ -75,10 +81,22 @@ class Player(pygame.sprite.Sprite):
         self.player_movement()
         self.pos = self.movement.get_pos()
 
+        # Update the player's collision box
         self.collision_box.x = self.pos.x
         self.collision_box.y = self.pos.y
 
+        # Update the player's mass bar
+        mass_ratio = self.current_trash_item_mass / PLAYER_MAX_MASS
+        self.mass_bar_foreground.width = mass_ratio * MASS_BAR_WIDTH
+
+        # Draw collision around the player
         pygame.draw.rect(screen, "red", self.collision_box, 5, 5, 0, 0, 0, 0)
 
+        # Draw the player
         self.sprite.draw(screen, self.pos, size=self.player_size, rotation=self.movement.get_rotation())
         self.sprite.next_frame()
+
+        # Draw the mass bar
+        pygame.draw.rect(screen, "black", self.mass_bar_background)
+        pygame.draw.rect(screen, "green", self.mass_bar_foreground)
+

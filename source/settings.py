@@ -12,6 +12,12 @@ MENU_COLOUR = (60, 25, 60)  # Menu screen background colour
 # Player
 PLAYER_MAX_MASS = 50
 
+# Mass bar
+MASS_BAR_WIDTH = 250
+MASS_BAR_HEIGHT = 20
+MASS_BAR_X = SCREEN_WIDTH - 300
+MASS_BAR_Y = 50
+
 # Trash spawning
 MIN_TRASH_SPEED = 5
 MAX_TRASH_SPEED = 10
