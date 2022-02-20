@@ -1,5 +1,5 @@
 # Global constants
-SCREEN_SIZE = SCREEN_WIDTH, SCREEN_HEIGHT, = 800, 500
+SCREEN_SIZE = SCREEN_WIDTH, SCREEN_HEIGHT, = 1080, 720
 FPS = 60
 
 # Colours used
@@ -25,3 +25,4 @@ TRASH_COLLECT_SPEED = 100
 # File paths
 PLAYER_SPRITESHEET_PATH = "resources/arrow.png"
 TRASH_SPRITESHEET_PATH = "resources/trash-image.png"
+BACKGROUND_IMAGE_PATH = "resources/Junkpit.png"
