@@ -10,12 +10,19 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.pos = Vector(initial_pos[0], initial_pos[1])
         self.player_size = (64, 64)  # Setting player size to be changed through upgrades
-        self.size_up_num = 0  # Number of size upgrades
+        self.collision_box = pygame.Rect((self.pos.x, self.pos.y), (self.player_size[0], self.player_size[0]))
+
         self.player_speed = 10
+
+        # Upgrades
         self.speed_up_num = 0  # Number of movement speed upgrades
+        self.size_up_num = 0  # Number of size upgrades
 
         self.movement = Movement(self.player_speed, self.pos)
         self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 1)
+
+        self.current_trash_item_mass = 0
+        self.trash_items = []
 
     def player_movement(self):
         keys_pressed = pygame.key.get_pressed()
@@ -32,6 +39,20 @@ class Player(pygame.sprite.Sprite):
             self.movement.move_vertical(-1)
 
         self.movement.update()
+
+    def can_add_item(self):
+        return self.current_trash_item_mass <= PLAYER_MAX_MASS
+
+    def add_trash_item(self, trash_item):
+        self.trash_items.append(trash_item)
+        self.current_trash_item_mass += trash_item.get_mass()
+        print("current mass: {}".format(self.current_trash_item_mass))
+
+    def remove_trash_item(self):
+        if len(self.trash_items):
+            trash_item = self.trash_items.pop()
+            self.current_trash_item_mass -= trash_item.get_mass()
+            print("current mass: {}".format(self.current_trash_item_mass))
 
     def upgrade(self, size_up=False, speed_up=False):
 
@@ -53,5 +74,11 @@ class Player(pygame.sprite.Sprite):
     def update(self, screen):
         self.player_movement()
         self.pos = self.movement.get_pos()
+
+        self.collision_box.x = self.pos.x
+        self.collision_box.y = self.pos.y
+
+        pygame.draw.rect(screen, "red", self.collision_box, 5, 5, 0, 0, 0, 0)
+
         self.sprite.draw(screen, self.pos, size=self.player_size, rotation=self.movement.get_rotation())
         self.sprite.next_frame()

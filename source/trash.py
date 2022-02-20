@@ -17,7 +17,7 @@ class Trash:
         self.movement = TrashMovement(TRASH_COLLECT_SPEED, self.pos, self.velocity, target=player.get_pos())
         self.collision_rect = pygame.Rect((self.pos.x, self.pos.y), (64, 64))
         self.sprite = Spritesheet(TRASH_SPRITESHEET_PATH, 1, 1)
-        self.should_move = True
+        self.should_play_sucking_sound = False
         self.should_delete = False
 
     def get_mass(self):
@@ -34,9 +34,17 @@ class Trash:
             # Update the trash items movement to move towards the player
             self.movement.move_towards_target()
 
+            if self.should_play_sucking_sound:
+                suck_sound = pygame.mixer.Sound("resources/suck.wav")
+                #suck_sound.play()
+                self.should_play_sucking_sound = False
+
             # Delete the object and increment the total mass if the distance to the player is below a set threshold
             if distance_from_target <= TRASH_DISTANCE_TO_DELETE:
                 self.should_delete = True
+        else:
+            # Reset sucking sound
+            self.should_play_sucking_sound = True
 
         self.movement.update()
         self.pos = self.movement.get_pos()
