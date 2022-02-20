@@ -1,12 +1,16 @@
 import random
 
+import pygame
+
 from source.trash import Trash
 from source.vector import Vector
+from source.time_manager import TimeManager
 from source.settings import MIN_TRASH_SPEED
 from source.settings import MAX_TRASH_SPEED
 from source.settings import MIN_TRASH_MASS
 from source.settings import MAX_TRASH_MASS
 from source.settings import MAX_TRASH_PER_SPAWNER
+from source.settings import TRASH_SPAWN_PERIOD
 
 
 class TrashSpawner:
@@ -22,7 +26,7 @@ class TrashSpawner:
     def spawn(self):
 
         # If the trash spawner has reach the max amount of items it can spawn, exit
-        if len(self.spawned_trash) == MAX_TRASH_PER_SPAWNER:
+        if len(self.spawned_trash) >= MAX_TRASH_PER_SPAWNER:
             return
 
         # Pick a random velocity for the trash to be thrown at
@@ -57,10 +61,16 @@ class TrashSpawner:
         return self.spawned_trash
 
     def update(self, screen):
+        if TimeManager.transition(TRASH_SPAWN_PERIOD):
+            self.spawn()
+
         for trash_item in self.spawned_trash:
             trash_item.update(screen)
-            if trash_item.should_remove_from_trash():
+            if trash_item.should_remove_from_trash() and self.player.can_add_item():
                 self.spawned_trash.remove(trash_item)
+                self.player.add_trash_item(trash_item)
+                sound = pygame.mixer.Sound("resources/pop.wav")
+                sound.play()
                 self.total_sucked += 1
 
 

@@ -42,6 +42,8 @@ class Spritesheet:
         if size is not None:
             cropped = pygame.transform.scale(cropped, (int(size[0]), int(size[1])))
 
+        pygame.Surface.set_colorkey(cropped, (0, 0, 0))
+
         screen.blit(cropped, (pos_vector.x, pos_vector.y))
 
     # Increments the sprite's frame

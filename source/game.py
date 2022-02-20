@@ -1,8 +1,10 @@
 from source.player import *
 from source.settings import *
 from source.trash_spawner import TrashSpawner
+from source.incinerator import Incinerator
 from source.vector import Vector
 from source.level import Level
+from source.time_manager import TimeManager
 
 
 class Game:
@@ -12,11 +14,11 @@ class Game:
         self.screen = None
         self.window_setup()
         self.clock = pygame.time.Clock()
-        self.tick_counter = 0
         self.player = Player((SCREEN_WIDTH / 2 - 32, SCREEN_HEIGHT / 2 - 32))
+        self.incinerator = Incinerator(Vector(20, 0), Vector(100, 100), self.player)
         self.trash_spawner = TrashSpawner(Vector(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 100), (0, -1), self.player)
         self.level = Level()
-        self.background_image = pygame.image.load(BACKGROUND_IMAGE_PATH)
+        self.background_image = pygame.Surface.convert(pygame.image.load(BACKGROUND_IMAGE_PATH))
 
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
@@ -26,13 +28,11 @@ class Game:
         # Load the background image
         self.screen.blit(self.background_image, (0, 0))
 
-        self.player.update(self.screen)  # Updates player behaviour
+        self.incinerator.update(self.screen)  # Updates incinerator behaviour
         self.trash_spawner.update(self.screen)  # Updates trash spawner behaviour
+        self.player.update(self.screen)  # Updates player behaviour
 
-        if self.tick_counter % (TRASH_SPAWN_PERIOD * FPS) == 0:
-            self.trash_spawner.spawn()
-
-        self.tick_counter += 1
+        TimeManager.tick()
 
     def play_game(self):
         running = True
