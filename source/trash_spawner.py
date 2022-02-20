@@ -20,6 +20,7 @@ class TrashSpawner:
         self.possible_directions_from_bottom = [(1, 1), (0.5, 1), (0, 1), (-0.5, 1), (-1, 1)]
 
     def spawn(self):
+
         # If the trash spawner has reach the max amount of items it can spawn, exit
         if len(self.spawned_trash) == MAX_TRASH_PER_SPAWNER:
             return
@@ -51,6 +52,9 @@ class TrashSpawner:
 
         self.spawned_trash.append(new_trash_item)
         self.total_spawned += 1
+
+    def get_current_trash(self):
+        return self.spawned_trash
 
     def update(self, screen):
         for trash_item in self.spawned_trash:
