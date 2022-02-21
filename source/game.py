@@ -23,6 +23,7 @@ class Game:
         self.level = Level()
         self.background_image = pygame.Surface.convert(pygame.image.load(BACKGROUND_IMAGE_PATH))
         self.total_trash = 0
+        self.small_font = pygame.font.SysFont("Corbel", FONT_SIZE)
 
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
@@ -38,9 +39,12 @@ class Game:
             self.total_trash = trash_spawner.get_number_trash()
         self.player.update(self.screen)  # Updates player behaviour
 
-        print(self.total_trash)
-
         self.check_game_over()
+
+        colour = WHITE if self.total_trash < TRASH_UNTIL_GAME_OVER - 5 else RED
+
+        items_text = self.small_font.render(str(self.total_trash) + "/" + str(TRASH_UNTIL_GAME_OVER), True, colour)
+        self.screen.blit(items_text, (TRASH_TEXT_X, TRASH_TEXT_Y))
 
         TimeManager.tick()
 
