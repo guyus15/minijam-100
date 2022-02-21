@@ -67,13 +67,11 @@ class Player(pygame.sprite.Sprite):
             self.player_size = (self.player_size[0] * 1.5, self.player_size[1] * 1.5)
             self.movement.set_speed(self.player_speed)
             self.size_up_num += 1
-            print("Becoming Chip")
 
         if speed_up and self.speed_up_num <= 4:
             self.player_speed = (self.player_speed * 1.5)
             self.movement.set_speed(self.player_speed)
             self.speed_up_num += 1
-            print("Becoming Fin")
 
     def get_pos(self):
         return self.pos
@@ -89,9 +87,6 @@ class Player(pygame.sprite.Sprite):
         # Update the player's mass bar
         mass_ratio = self.current_trash_item_mass / PLAYER_MAX_MASS
         self.mass_bar_foreground.width = mass_ratio * MASS_BAR_WIDTH
-
-        # Draw collision around the player
-        pygame.draw.rect(screen, "red", self.collision_box, 5, 5, 0, 0, 0, 0)
 
         # Draw the player
         self.sprite.draw(screen, self.pos, size=self.player_size, rotation=self.movement.get_rotation())
