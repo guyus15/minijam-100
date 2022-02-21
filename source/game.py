@@ -77,4 +77,4 @@ class Game:
     def check_game_over(self):
         if self.total_trash >= TRASH_UNTIL_GAME_OVER:
             pygame.quit()
-            Menu(MenuType.GAME_OVER)
+            Menu(MenuType.GAME_OVER, self.player.get_mass_incinerated())

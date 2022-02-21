@@ -19,12 +19,11 @@ class Incinerator:
 
         self.spritesheet = Spritesheet(INCINERATOR_SPRITESHEET_PATH, 1, 1)
 
-    def add_item(self, mass):
-        self.total_incinerated_items += 1
-        self.total_mass_incinerated += mass
-
     def player_in_area(self):
         return pygame.Rect.colliderect(self.collision_box, self.player.collision_box)
+
+    def get_score(self):
+        return self.total_mass_incinerated
 
     def update(self, screen):
         if self.player_in_area() and TimeManager.transition(INCINERATOR_SPEED):

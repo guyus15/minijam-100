@@ -25,6 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.sprite = Spritesheet(PLAYER_SPRITESHEET_PATH, 1, 1)
 
         self.current_trash_item_mass = 0
+        self.current_mass_incinerated = 0
         self.trash_items = []
 
         # Mass bar
@@ -58,8 +59,12 @@ class Player(pygame.sprite.Sprite):
         if len(self.trash_items):
             trash_item = self.trash_items.pop()
             self.current_trash_item_mass -= trash_item.get_mass()
+            self.current_mass_incinerated += trash_item.get_mass()
             incinerator_sound = pygame.mixer.Sound(INCINERATOR_SOUND_PATH)
             incinerator_sound.play()
+
+    def get_mass_incinerated(self):
+        return self.current_mass_incinerated
 
     def upgrade(self, size_up=False, speed_up=False):
 

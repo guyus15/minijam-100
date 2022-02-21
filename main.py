@@ -36,6 +36,7 @@ class Menu:
         game_title = self.small_font.render(main_text, True, WHITE)
         quit_text = self.small_font.render("Quit", True, WHITE)
         start_text = self.small_font.render(button_one_text, True, WHITE)
+        score_text = self.small_font.render("You scored: {}!".format(self.score), True, WHITE)
 
         quit_button = pygame.Rect(((SCREEN_WIDTH / 2) + 20), (SCREEN_HEIGHT / 2 + 100), 140, 40)
         start_button = pygame.Rect(((SCREEN_WIDTH / 2) - 160), (SCREEN_HEIGHT / 2 + 100), 140, 40)
@@ -75,6 +76,10 @@ class Menu:
             self.screen.blit(quit_text, (quit_button.x + 25, quit_button.y))
             self.screen.blit(start_text, (start_button.x + 25, start_button.y))
             self.screen.blit(game_title, ((SCREEN_WIDTH / 2) - (game_title.get_width() / 2), SCREEN_HEIGHT / 3))
+
+            # If a score has been provided, render it to the screen
+            if self.menu_type is MenuType.GAME_OVER:
+                self.screen.blit(score_text, ((SCREEN_WIDTH / 2) - (score_text.get_width() / 2), SCREEN_HEIGHT / 2))
 
             pygame.display.update()
 
