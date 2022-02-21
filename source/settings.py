@@ -46,8 +46,9 @@ TRASH_UNTIL_GAME_OVER = 20
 FONT_SIZE = 45
 
 # File paths
-PLAYER_SPRITESHEET_PATH = "resources/arrow.png"
+PLAYER_SPRITESHEET_PATH = "resources/Character.png"
 TRASH_SPRITESHEET_PATH = "resources/trash_spritesheet.png"
 INCINERATOR_SPRITESHEET_PATH = "resources/Incinerator.png"
 BACKGROUND_IMAGE_PATH = "resources/Junkpit.png"
 
+INCINERATOR_SOUND_PATH = "resources/incinerator.wav"

@@ -1,15 +1,18 @@
 import pygame
-from source.settings import *
 from source.spritesheet import Spritesheet
 from source.movement import Movement
 from source.vector import Vector
+from source.settings import SCREEN_WIDTH, SCREEN_HEIGHT
+from source.settings import PLAYER_SPRITESHEET_PATH
+from source.settings import MASS_BAR_X, MASS_BAR_Y, MASS_BAR_WIDTH, MASS_BAR_HEIGHT, PLAYER_MAX_MASS
+from source.settings import INCINERATOR_SOUND_PATH
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, initial_pos):
         super().__init__()
         self.pos = Vector(initial_pos[0], initial_pos[1])
-        self.player_size = (64, 64)  # Setting player size to be changed through upgrades
+        self.player_size = (96, 96)  # Setting player size to be changed through upgrades
         self.collision_box = pygame.Rect((self.pos.x, self.pos.y), (self.player_size[0], self.player_size[0]))
 
         self.player_speed = 10
@@ -55,7 +58,7 @@ class Player(pygame.sprite.Sprite):
         if len(self.trash_items):
             trash_item = self.trash_items.pop()
             self.current_trash_item_mass -= trash_item.get_mass()
-            incinerator_sound = pygame.mixer.Sound("resources/incinerator.wav")
+            incinerator_sound = pygame.mixer.Sound(INCINERATOR_SOUND_PATH)
             incinerator_sound.play()
 
     def upgrade(self, size_up=False, speed_up=False):
@@ -97,4 +100,3 @@ class Player(pygame.sprite.Sprite):
         # Draw the mass bar
         pygame.draw.rect(screen, "black", self.mass_bar_background)
         pygame.draw.rect(screen, "green", self.mass_bar_foreground)
-
