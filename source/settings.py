@@ -51,4 +51,6 @@ TRASH_SPRITESHEET_PATH = "resources/trash_spritesheet.png"
 INCINERATOR_SPRITESHEET_PATH = "resources/Incinerator.png"
 BACKGROUND_IMAGE_PATH = "resources/Junkpit.png"
 
+POP_SOUND_PATH = "resources/pop.wav"
 INCINERATOR_SOUND_PATH = "resources/incinerator.wav"
+THEME_MUSIC_PATH = "resources/Theme_tune.wav"

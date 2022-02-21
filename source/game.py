@@ -1,3 +1,5 @@
+import pygame
+
 from source.player import *
 from source.settings import *
 from source.trash_spawner import TrashSpawner
@@ -28,6 +30,9 @@ class Game:
     def window_setup(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
         pygame.display.set_caption("Mini Jam Game")
+
+        pygame.mixer.music.load(THEME_MUSIC_PATH)
+        pygame.mixer.music.play(loops=-1)
 
     def update(self):
         # Load the background image

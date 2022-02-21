@@ -11,6 +11,7 @@ from source.settings import MIN_TRASH_MASS
 from source.settings import MAX_TRASH_MASS
 from source.settings import MAX_TRASH_PER_SPAWNER
 from source.settings import TRASH_SPAWN_PERIOD
+from source.settings import POP_SOUND_PATH
 
 
 class TrashSpawner:
@@ -72,7 +73,7 @@ class TrashSpawner:
             if trash_item.should_remove_from_trash() and self.player.can_add_item():
                 self.spawned_trash.remove(trash_item)
                 self.player.add_trash_item(trash_item)
-                sound = pygame.mixer.Sound("resources/pop.wav")
+                sound = pygame.mixer.Sound(POP_SOUND_PATH)
                 sound.play()
                 self.total_sucked += 1
 
