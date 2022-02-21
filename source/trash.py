@@ -17,7 +17,7 @@ class Trash:
         self.rotation = rotation
         self.mass = mass
         self.movement = TrashMovement(TRASH_COLLECT_SPEED, self.pos, self.velocity, target=player.get_pos())
-        self.collision_rect = pygame.Rect((self.pos.x, self.pos.y), (128,128))
+        self.collision_rect = pygame.Rect((self.pos.x, self.pos.y), (128, 128))
         self.sprite = Spritesheet(TRASH_SPRITESHEET_PATH, 2, 3)
         self.random_frame = random.randint(1, 6)
         self.should_play_sucking_sound = False

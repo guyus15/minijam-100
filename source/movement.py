@@ -139,7 +139,7 @@ class TrashMovement(Movement):
         self.pos_vector.add(self.vel_vector)
         self.vel_vector.multiply(0.99)  # Dampens movement when coming to a stop
 
-        if self.pos_vector.x >= SCREEN_WIDTH or self.pos_vector.x <= 0:
+        if self.pos_vector.x >= SCREEN_WIDTH - 64 or self.pos_vector.x <= -64:
             self.vel_vector = Vector(-self.vel_vector.x, self.vel_vector.y)
-        if self.pos_vector.y >= SCREEN_HEIGHT or self.pos_vector.y <= 0:
+        if self.pos_vector.y >= SCREEN_HEIGHT - 64 or self.pos_vector.y <= -64:
             self.vel_vector = Vector(self.vel_vector.x, -self.vel_vector.y)
